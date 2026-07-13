@@ -1,0 +1,11 @@
+
+
+
+
+$ python diary.py
+What happened today?
+cd
+
+
+kkkkkk
+done for now
