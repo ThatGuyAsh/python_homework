@@ -128,6 +128,3 @@ def test_hire_date_notNAT():
 
 
 
-
-
-
