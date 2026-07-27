@@ -77,44 +77,36 @@ more_employees.info()
 
 # Task 4: Data Cleaning
 
-# Read dirty_data.csv into a DataFrame
+# Read dirty_data.csv
 dirty_data = pd.read_csv("dirty_data.csv")
-
 print(dirty_data)
 
-
-# Create a copy of the dirty data
+# Make a copy
 clean_data = dirty_data.copy()
-
 
 # Remove duplicate rows
 clean_data.drop_duplicates(inplace=True)
-
 print(clean_data)
-
 
 # Convert Age to numeric
 clean_data["Age"] = pd.to_numeric(
     clean_data["Age"],
     errors="coerce"
 )
-
 print(clean_data)
 
-
-# Replace placeholders and convert Salary to numeric
+# Replace salary placeholders with NaN
 clean_data["Salary"] = clean_data["Salary"].replace(
     ["unknown", "n/a"],
     pd.NA
 )
 
+# Convert Salary to numeric
 clean_data["Salary"] = pd.to_numeric(
     clean_data["Salary"],
     errors="coerce"
 )
-
 print(clean_data)
-
 
 # Fill missing Age with the mean
 clean_data["Age"] = clean_data["Age"].fillna(
@@ -125,9 +117,7 @@ clean_data["Age"] = clean_data["Age"].fillna(
 clean_data["Salary"] = clean_data["Salary"].fillna(
     clean_data["Salary"].median()
 )
-
 print(clean_data)
-
 
 # Convert Hire Date to datetime
 clean_data["Hire Date"] = pd.to_datetime(
@@ -135,9 +125,7 @@ clean_data["Hire Date"] = pd.to_datetime(
     format="mixed",
     errors="coerce"
 )
-
 print(clean_data)
-
 
 # Strip whitespace from Name
 clean_data["Name"] = clean_data["Name"].str.strip()
@@ -148,5 +136,4 @@ clean_data["Department"] = (
     .str.strip()
     .str.upper()
 )
-
 print(clean_data)
