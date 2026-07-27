@@ -77,25 +77,13 @@ more_employees.info()
 
 # Task 4: Data Cleaning
 
-# Create the dirty data DataFrame
-sample_data = """Name,Age,Salary,Hire Date,Department
-Alice, 29,50000,2021/01/15, Sales 
-Bob, 32, unknown,2020-03-18,MARKETING
- charlie, NaN, 70000,3/25/2019,marketinG
-Dana, 41, n/a,2020/12/01, HR
-Eve, 24,65000,2021/06/07,  hr
-Frank, 32,75000, 2019-07-11,Sales
-Bob, 32, unknown,2020-03-18,MARKETING
-"""
-
-from io import StringIO
-
-dirty_data = pd.read_csv(StringIO(sample_data))
+# Read dirty_data.csv into a DataFrame
+dirty_data = pd.read_csv("dirty_data.csv")
 
 print(dirty_data)
 
 
-# Create a copy for cleaning
+# Create a copy of the dirty data
 clean_data = dirty_data.copy()
 
 
@@ -114,8 +102,7 @@ clean_data["Age"] = pd.to_numeric(
 print(clean_data)
 
 
-# Convert Salary to numeric
-# Replace "unknown" and "n/a" with missing values
+# Replace placeholders and convert Salary to numeric
 clean_data["Salary"] = clean_data["Salary"].replace(
     ["unknown", "n/a"],
     pd.NA
@@ -152,9 +139,10 @@ clean_data["Hire Date"] = pd.to_datetime(
 print(clean_data)
 
 
-# Strip whitespace and convert Name and Department to uppercase
-clean_data["Name"] = clean_data["Name"].str.strip().str.upper()
+# Strip whitespace from Name
+clean_data["Name"] = clean_data["Name"].str.strip()
 
+# Strip whitespace and uppercase Department
 clean_data["Department"] = (
     clean_data["Department"]
     .str.strip()
