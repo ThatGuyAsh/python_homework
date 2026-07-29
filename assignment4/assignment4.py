@@ -123,7 +123,7 @@ print(clean_data)
 clean_data["Hire Date"] = pd.to_datetime(
     clean_data["Hire Date"],
     format="mixed",
-    errors="coerce"
+    errors="raise"
 )
 print(clean_data)
 
